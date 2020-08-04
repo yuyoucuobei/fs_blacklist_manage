@@ -1,0 +1,22 @@
+<include>
+	<context name="public">
+		<extension name="blacklist_manage" continue="true">
+			<condition field="destination_number" expression="^(\d*)$">
+				<action application="blacklist_manage_check" data=""/>
+				<action application="hangup" data="CALL_REJECTED"/>     
+            </condition>
+		</extension>
+	</context>
+
+	<!-- redis and mysql -->
+	<!-- param redis_use: 0 unuse, 1 use -->
+	<X-PRE-PROCESS cmd="set" data="redis_use=0"/>
+	<X-PRE-PROCESS cmd="set" data="MysqlHost=192.168.0.202"/>
+	<X-PRE-PROCESS cmd="set" data="MysqlPort=3306"/>
+	<X-PRE-PROCESS cmd="set" data="MysqlUser=root"/>
+	<X-PRE-PROCESS cmd="set" data="MysqlPasswd=123456"/>
+	<X-PRE-PROCESS cmd="set" data="MysqlName=blacklist"/>	
+
+	<X-PRE-PROCESS cmd="set" data="blacklist_name=blacklist"/>	
+</include>
+
